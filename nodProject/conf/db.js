@@ -1,14 +1,18 @@
 const env = process.env.NODE_ENV;
 // mysql 与redis 的配置
+// mysql 需要配置 域名，用户名，密码，端口号，数据库
+// redis 需要配置端口号和域名
 let MYSQL_CONF;
 let REDIS_CONF;
-if (env == 'dev') {
+const password = '2000072140lhb'
+const database = 'vue_blog'
+if (env === 'dev') {
     MYSQL_CONF = {
         host: 'localhost',
         user:'root',
-        password:'2000072140lhb',
+        password,
         port:'3306',
-        database:'vue_blog'
+        database
     }
 
     REDIS_CONF = {
@@ -16,13 +20,14 @@ if (env == 'dev') {
         host:'127.0.0.1'
     }
 }
-if (env == 'production') {
+if (env === 'production') {
     MYSQL_CONF = {
         host:'172.29.75.29',
         user:'root',
-        password:'2000072140lhb',
+        password,
         port:'3306',
-        database:'vue_blog'
+        // 数据库
+        database
     }
     REDIS_CONF = {
         port: 6379,
